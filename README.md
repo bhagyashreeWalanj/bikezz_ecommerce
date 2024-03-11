@@ -2,6 +2,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+## reference Youtube link : https://www.youtube.com/watch?v=-bXrG6ZCmy0&t=57s
+
+https://github.com/n49/react-stars
+https://lucide.dev/icons/
+https://ui.shadcn.com/themes
+https://ui.shadcn.com/docs/components/accordion
+https://react-icons.github.io/react-icons/
+
 First, run the development server:
 
 ```bash
