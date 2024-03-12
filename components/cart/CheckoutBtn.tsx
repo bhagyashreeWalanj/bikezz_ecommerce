@@ -3,7 +3,7 @@ import React from "react";
 import { useShoppingCart } from "use-shopping-cart";
 
 const CheckoutBtn = () => {
-  const { redirectToCheckout, clearCart } = useShoppingCart();
+  const { redirectToCheckout } = useShoppingCart();
 
   const handleCheckout = async () => {
     try {

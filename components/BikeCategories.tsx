@@ -95,7 +95,7 @@ const BikeCategories = ({ bikes }: any) => {
                 ? "No Data Found"
                 : filteredBikes.map((bike: any) => {
                     return (
-                      <div key={bike._id}>
+                      <div key={bike.id}>
                         <Bike bike={bike} />
                       </div>
                     );

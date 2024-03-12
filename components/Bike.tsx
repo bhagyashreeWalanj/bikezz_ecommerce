@@ -11,16 +11,28 @@ import { CgShoppingBag } from "react-icons/cg";
 import AddToCartBtn from "./cart/AddToCartBtn";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { IBike } from "@/types/Product";
+import { useWishlist } from "@/context/WishlistContext";
 
 interface BikeComponentProps {
   bike: IBike;
 }
 const Bike: React.FC<BikeComponentProps> = ({ bike }) => {
   const [like, setLike] = useState(false);
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
+
   const popularBikes = bike.categories.find(
     (item: any) => item.name === "popular"
   );
-  const handleLikeBtn = () => {
+  const wishlistedBike =
+    wishlist && wishlist.find((item: any) => item === bike.id);
+
+  const handleAddToWishList = () => {
+    addToWishlist(bike.id);
+    setLike(!like);
+  };
+
+  const handleRemoveFromWishList = () => {
+    removeFromWishlist(bike.id);
     setLike(!like);
   };
 
@@ -60,10 +72,10 @@ const Bike: React.FC<BikeComponentProps> = ({ bike }) => {
 
         {/* add to favourite btn */}
         <div className="absolute top-8 right-8 flex justify-center items-center cursor-pointer ">
-          {like ? (
+          {wishlistedBike ? (
             <button
               className="grid justify-center items-center text-2xl"
-              onClick={() => handleLikeBtn()}
+              onClick={() => handleRemoveFromWishList()}
             >
               <FaHeart className="text-2xl cursor-pointer text-primary" />
             </button>
@@ -71,7 +83,7 @@ const Bike: React.FC<BikeComponentProps> = ({ bike }) => {
             <>
               <button
                 className="grid justify-center items-center text-2xl"
-                onClick={() => handleLikeBtn()}
+                onClick={() => handleAddToWishList()}
               >
                 <FaRegHeart className="text-2xl text-black" />
               </button>

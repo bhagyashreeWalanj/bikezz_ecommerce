@@ -3,10 +3,10 @@ import { Inter, Rajdhani } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CartProvider from "@/components/cart/CartProvider";
+import CartProvider from "@/context/CartProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { FaBicycle } from "react-icons/fa";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
@@ -29,10 +29,12 @@ export default function RootLayout({
       <body className={rajdhani.variable}>
         <ThemeProvider>
           <CartProvider>
-            <Header />
-            {children}
-            <Toaster />
-            <Footer />
+            <WishlistProvider>
+              <Header />
+              {children}
+              <Toaster />
+              <Footer />
+            </WishlistProvider>
           </CartProvider>
         </ThemeProvider>
       </body>

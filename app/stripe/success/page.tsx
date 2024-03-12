@@ -1,36 +1,27 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { useShoppingCart } from "use-shopping-cart";
 import { FaCheckCircle } from "react-icons/fa";
 import Image from "next/image";
+import BackToHomeBtn from "@/components/common/BackToHomeBtn";
 
 const SuccessPage = () => {
   const { clearCart, totalPrice, cartDetails } = useShoppingCart();
-  const [orderDetails, setOrderDetails] = useState(cartDetails);
+  const [orderDetails, setOrderDetails] = useState<any>();
 
   useEffect(() => {
     if (cartDetails) setOrderDetails(cartDetails);
-    // setTimeout(() => {
-    //   clearCart();
-    // }, 10000);
   }, []);
 
   return (
     <section>
       <div className="pt-12 pb-24 bg-white overflow-hidden">
         <div className="container px-4 mx-auto">
-          <div className="flex justify-start">
-            <Link href="/">
-              <button
-                className="btn btn-black mx-auto"
-                onClick={() => clearCart()}
-              >
-                Back to home
-              </button>
-            </Link>
-          </div>
+          <BackToHomeBtn
+            containerStyle="flex justify-start"
+            handleOnClick={() => clearCart()}
+          />
 
           <div className="relative pb-9 text-center">
             <h2 className="text-6xl xl:text-10xl leading-normal font-heading font-medium text-center">
@@ -55,10 +46,10 @@ const SuccessPage = () => {
                   What you ordered:
                 </p>
                 {orderDetails &&
-                  Object.keys(orderDetails).map((key) => {
+                  Object.keys(orderDetails).map((key, index) => {
                     const product = orderDetails[key];
                     return (
-                      <div className="flex flex-col">
+                      <div className="flex flex-col" key={index}>
                         <div className="sm:flex sm:items-center pb-7 mb-7 border-b border-black border-opacity-5">
                           <div className="w-[110px] h-[110px] relative sm:pl-7 sm:mb-0 sm:mr-12 mb-6 mx-auto sm:ml-0">
                             <Image
@@ -118,15 +109,6 @@ const SuccessPage = () => {
                       <span className="flex items-center text-xl text-white">
                         <span className="mr-3 text-base">€</span>
                         <span>{totalPrice}</span>
-                      </span>
-                    </p>
-                    <p className="flex items-center justify-between leading-8 font-heading font-medium">
-                      <span className="text-white text-opacity-70">
-                        Shipping
-                      </span>
-                      <span className="flex items-center text-xl text-white">
-                        <span className="mr-3 text-base">€</span>
-                        <span>{10}</span>
                       </span>
                     </p>
                   </div>

@@ -18,6 +18,7 @@ import { CgShoppingBag } from "react-icons/cg";
 import { mockdata } from "@/components/mockdata/mockdata";
 import Review from "@/components/reviews/Review";
 import { IBike, IBikesMain } from "@/types/Product";
+import BackToHomeBtn from "@/components/common/BackToHomeBtn";
 
 interface IProps {
   params: {
@@ -80,12 +81,7 @@ const ProductDetails = ({ params }: IProps) => {
 
             {/* text */}
             <div className="flex-1 flex flex-col justify-center items-start gap-10">
-              <Link
-                href={"/"}
-                className="flex  items-center gap-2 font-semibold hover:text-primary dark:hover:text-primary"
-              >
-                <ChevronLeft size={20} /> Back To Home
-              </Link>
+              <BackToHomeBtn containerStyle="flex items-start" />
               <div className="flex flex-col gap-6 items-start">
                 <div>
                   <h3 className="text-4xl">{bikeData.name}</h3>

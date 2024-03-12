@@ -9,11 +9,14 @@ import { useShoppingCart } from "use-shopping-cart";
 import ThemeToggler from "./theme/ThemeToggler";
 import { usePathname } from "next/navigation";
 import { Bike } from "lucide-react";
+import { FaHeart } from "react-icons/fa";
+import { useWishlist } from "@/context/WishlistContext";
 
 const Header = () => {
   const { cartCount, handleCartClick } = useShoppingCart();
   const [header, setHeader] = useState<boolean>(false);
   const pathname = usePathname();
+  const { wishlist } = useWishlist();
 
   useEffect(() => {
     function handleScroll() {
@@ -48,6 +51,16 @@ const Header = () => {
         </Link>
         <div className="flex items-center gap-[26px]">
           <Nav containerStyles="flex gap-[36px]" />
+          {/* wishlist */}
+          <div className="relative cursor-pointer">
+            <Link href={"/wishlist"}>
+              <FaHeart className="text-2xl text-black dark:text-white dark:hover:text-primary hover:text-primary" />
+              <div className="bg-primary w-[18px] h-[18px] absolute -right-1 -bottom-1 rounded-full text-white flex items-center justify-center text-sm font-medium">
+                {wishlist && wishlist.length ? wishlist.length : "0"}
+              </div>
+            </Link>
+          </div>
+          {/* shopping bag */}
           <div
             className="relative cursor-pointer"
             onClick={() => handleCartClick()}
